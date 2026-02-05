@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волонтерський штаб ОКО</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-main: #2d2d2d;
+            --text-secondary: #555555;
+            --accent: #333333;
+            --border: #e0e0e0;
+            --danger: #d9534f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-eye {
+            width: 35px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50% 0;
+            transform: rotate(-45deg);
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-eye::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 12px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #888;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .petition-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 5px solid var(--accent);
+        }
+
+        .security-box {
+            background: #fff;
+            border: 2px solid var(--danger);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .requisites {
+            background: var(--accent);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .card-number {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            display: block;
+            margin: 15px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tg-link {
+            color: var(--accent);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { width: 95%; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-eye"></div>
+        ШТАБ "ОКО"
+    </div>
+    <nav>
+        <a href="#home">Головна</a>
+        <a href="#petitions">Петиції</a>
+        <a href="#donate">Реквізити</a>
+        <a href="#contacts">Контакти</a>
+    </nav>
+</header>
+
+<div class="container">
+    
+    <section class="hero" id="home">
+        <h1>Ми допомагаємо</h1>
+        <p>Волонтерський штаб «ОКО» — бачимо потребу, діємо миттєво.</p>
+        
+        <div class="services">
+            <div class="card">
+                <h3>Захисникам</h3>
+                <p>Технікою, екіпіруванням, одягом, медикаментами та продуктами.</p>
+            </div>
+            <div class="card">
+                <h3>Лікарням</h3>
+                <p>Обладнанням, розхідниками та необхідними медикаментами.</p>
+            </div>
+            <div class="card">
+                <h3>Пораненим</h3>
+                <p>Реабілітацією та повним відновленням після поранень.</p>
+            </div>
+            <div class="card">
+                <h3>Цивільним</h3>
+                <p>Одягом, предметами побуту, гігієною та їжею.</p>
+            </div>
+            <div class="card">
+                <h3>Тваринам</h3>
+                <p>Кормом, ліками та допомогою в евакуації з гарячих точок.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="petition-section" id="petitions">
+        <h2>📜 Каталог петицій</h2>
+        <p>Важливі ініціативи часто залишаються непоміченими. Ми допомагаємо **закривати петиції**, розповсюджуючи їх у наших **закритих групах**, до яких немає доступу у звичайних людей. Це дозволяє залучити велику кількість підписів у стислі терміни.</p>
+        <p>Ми працюємо за принципом <b>вільного донату</b> — ви самі визначаєте суму внеску на підтримку нашого штабу за допомогу в розповсюдженні.</p>
+        <p><i>*Для верифікації та уникнення фейкових запитів адміністратор може попросити у вас фото паспорту. Ваші дані захищені.</i></p>
+    </section>
+
+    <section id="donate">
+        <div class="requisites">
+            <h3>ОФІЦІЙНІ РЕКВІЗИТИ</h3>
+            <p>Всі донати йдуть на потреби фронту та гуманітарну допомогу.</p>
+            <strong class="card-number">5355 2800 4641 4213</strong>
+            <p>Отримувач: Антон К.</p>
+        </div>
+    </section>
+
+    <section class="security-box" id="contacts">
+        <h3>🛡️ БЕЗПЕКА ТА КОНТАКТИ</h3>
+        <p>У нашого штабу є тільки <b>два офіційних представника</b> в Telegram:</p>
+        <ul>
+            <li>Адміністратор: <a href="https://t.me/Jjdjjdjdejeje" class="tg-link">@Jjdjjdjdejeje</a></li>
+            <li>Підтримка: <a href="https://t.me/Tjjrkesm" class="tg-link">@Tjjrkesm</a></li>
+        </ul>
+        <p style="color: var(--danger); font-weight: bold;">⚠️ УВАГА: Якщо вам пише людина з нікнеймом, який відрізняється хоча б на один символ — це МАШЕННІКИ. Ми користуємось ТІЛЬКИ вказаним вище рахунком.</p>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Волонтерський штаб "ОКО". Разом до перемоги.</p>
+</footer>
+
+</body>
+</html>
