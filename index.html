@@ -36,8 +36,7 @@
             z-index: 1000;
         }
 
-        /* Повернення логотипу */
-        .logo { font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
+        .logo { font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; cursor: pointer; }
         .logo-eye { width: 30px; height: 18px; border: 2.5px solid var(--accent); border-radius: 50% 0; transform: rotate(-45deg); position: relative; }
         .logo-eye::after { content: ''; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; position: absolute; top: 4px; left: 10px; }
 
@@ -48,29 +47,52 @@
             font-weight: 600; 
             font-size: 13px; 
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .container { width: 85%; max-width: 1200px; margin: 0 auto; padding: 40px 0; }
 
+        /* Слайди */
+        .page { display: none; }
+        .page.active { display: block; }
+
         .hero { text-align: center; padding: 40px 0; }
         .hero h1 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
-        .hero p { max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem; }
 
-        /* Повернення карток */
         .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; }
         .card { 
             background: var(--card-bg); 
             padding: 40px; 
             border-radius: 8px; 
             border: 1px solid var(--border); 
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .card:hover { border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .card h3 { margin-top: 0; text-transform: uppercase; font-size: 1.3rem; border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: inline-block; width: fit-content; }
-        .card p { font-size: 0.95rem; color: var(--text-muted); text-align: justify; }
+
+        /* Стилі для сторінки ФОТО */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .photo-item {
+            background: #ddd;
+            aspect-ratio: 4/3;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .petition-banner {
             background: var(--accent);
@@ -79,7 +101,6 @@
             border-radius: 8px;
             margin: 60px 0;
         }
-        .petition-banner h2 { text-transform: uppercase; margin-top: 0; }
 
         .requisites-container {
             background: #fff;
@@ -107,9 +128,7 @@
             text-transform: uppercase;
             cursor: pointer;
             margin-top: 15px;
-            transition: 0.2s;
         }
-        .btn-copy:hover { background: #333; }
 
         .security-box {
             border: 1px solid var(--danger);
@@ -117,95 +136,95 @@
             background: #fff;
             border-radius: 8px;
         }
-        .security-box h3 { color: var(--danger); text-transform: uppercase; margin-top: 0; }
 
-        footer { text-align: center; padding: 50px 0; color: #888; font-size: 12px; letter-spacing: 1px; border-top: 1px solid var(--border); }
-
-        @media (max-width: 768px) { .container { width: 90%; } .hero h1 { font-size: 2rem; } }
+        footer { text-align: center; padding: 50px 0; color: #888; font-size: 12px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><div class="logo-eye"></div> ШТАБ ОКО</div>
+    <div class="logo" onclick="showPage('home')"><div class="logo-eye"></div> ШТАБ ОКО</div>
     <nav>
-        <a href="#about">Діяльність</a>
-        <a href="#petitions">Петиції</a>
-        <a href="#donate">Реквізити</a>
+        <a onclick="showPage('home')">Діяльність</a>
+        <a onclick="showPage('photo-page')">Фото</a>
+        <a href="#petitions" onclick="showPage('home')">Петиції</a>
+        <a href="#donate" onclick="showPage('home')">Реквізити</a>
     </nav>
 </header>
 
 <div class="container">
-    <section class="hero" id="about">
-        <h1>Волонтерський штаб ОКО</h1>
-        <p>Професійна організація оперативної допомоги Силам Оборони України та цивільному населенню. Ми діємо на основі принципів прозорості, швидкості та цільового використання ресурсів.</p>
-        
-        <div class="services">
-            <div class="card">
-                <h3>Захисникам</h3>
-                <p>Постачання високотехнологічного обладнання: безпілотні авіаційні комплекси (БпАК), засоби радіоелектронної боротьби (РЕБ), нічна оптика та засоби зв'язку. Забезпечення підрозділів спеціалізованим екіпіруванням та автономним живленням у польових умовах.</p>
+    
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Волонтерський штаб ОКО</h1>
+            <p>Професійна організація оперативної допомоги Силам Оборони України та цивільному населенню.</p>
+            
+            <div class="services">
+                <div class="card"><h3>Захисникам</h3><p>Постачання БпАК, РЕБ та нічної оптики.</p></div>
+                <div class="card"><h3>Лікарням</h3><p>Підтримка шпиталів та тактична медицина.</p></div>
+                <div class="card"><h3>Пораненим</h3><p>Супровід у реабілітації та протезуванні.</p></div>
+                <div class="card"><h3>Цивільним</h3><p>Гуманітарна допомога на деокупованих територіях.</p></div>
+                <div class="card"><h3>Тваринам</h3><p>Корми та евакуація притулків.</p></div>
             </div>
-            <div class="card">
-                <h3>Лікарням</h3>
-                <p>Системна підтримка військових шпиталів та стабілізаційних пунктів. Передача сучасного медичного обладнання, розхідних матеріалів для інтенсивної терапії та засобів тактичної медицини за стандартами NATO.</p>
-            </div>
-            <div class="card">
-                <h3>Пораненим</h3>
-                <p>Юридичний та фінансовий супровід процесу реабілітації. Організація доступу до сучасного протезування, складних хірургічних операцій та комплексного відновлення поранених військовослужбовців.</p>
-            </div>
-            <div class="card">
-                <h3>Цивільним</h3>
-                <p>Гуманітарна допомога на деокупованих та прифронтових територіях. Логістика продуктів харчування, засобів гігієни та медикаментів для вразливих верств населення. Підтримка локальної інфраструктури.</p>
-            </div>
-            <div class="card">
-                <h3>Тваринам</h3>
-                <p>Забезпечення притулків у зонах бойових дій кормами та медикаментами. Сприяння евакуації тварин та надання невідкладної ветеринарної допомоги у критичних ситуаціях.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="petition-banner" id="petitions">
-        <h2>Регламент роботи з петиціями</h2>
-        <p>Ми надаємо послуги з просування суспільно важливих петицій через внутрішні закриті групи волонтерських та професійних спільнот. Це гарантує швидке охоплення та акумуляцію необхідної кількості підписів.</p>
-        <p><b>Умови взаємодії:</b> Послуга активується після верифікації звернення (у адміністратора можете запросити фото паспорта) та внесення добровільного внеску на підтримку діяльності штабу (вільний донат).</p>
-    </section>
+        <section class="petition-banner" id="petitions">
+            <h2>Регламент роботи з петиціями</h2>
+            <p>Просування суспільно важливих петицій через закриті волонтерські спільноти за вільний донат.</p>
+        </section>
 
-    <section class="requisites-container" id="donate">
-        <h2>Фінансова підтримка</h2>
-        <p>Ваші внески забезпечують безперервну роботу штабу та фінансування закупівлі обладнання для передової.</p>
-        <div class="card-wrapper">
-            <span class="card-number" id="cardNumber">5168752025653786</span>
-            <p><strong>Отримувач: Олександр П.</strong></p>
-            <button class="btn-copy" id="copyBtn" onclick="copyToClipboard()">Копіювати номер рахунку</button>
-        </div>
-    </section>
+        <section class="requisites-container" id="donate">
+            <h2>Фінансова підтримка</h2>
+            <div class="card-wrapper">
+                <span class="card-number" id="cardNumber">5168752025653786</span>
+                <p><strong>Отримувач: Олександр П.</strong></p>
+                <button class="btn-copy" onclick="copyToClipboard()">Копіювати</button>
+            </div>
+        </section>
 
-    <section class="security-box">
-        <h3>Безпека та верифікація</h3>
-        <p>Штаб ОКО використовує виключно вказаний рахунок. Пропозиції переказів на інші картки є ознакою шахрайства.</p>
-        <p>
-            Офіційні представники в Telegram:<br>
-            Адміністратор: <strong>@Jjdjjdjdejeje</strong><br>
-            Представник: <strong>@Tjjrkesm</strong><br>
-            Представник: <strong>@S_a_ny2106</strong>
-        </p>
-        <p>Будь ласка, перевіряйте автентичність нікнеймів перед початком діалогу.</p>
-    </section>
+        <section class="security-box">
+            <h3>Безпека</h3>
+            <p>Адміністратор: <strong>@Jjdjjdjdejeje</strong> | Представник: <strong>@Tjjrkesm</strong> | Модератор: <strong>@S_a_ny2106</strong></p>
+        </section>
+    </div>
+
+    <div id="photo-page" class="page">
+        <section class="hero">
+            <h1>Як ми працюємо</h1>
+            <p style="text-align: justify; margin-bottom: 30px;">
+                На цих фото ви можете побачити, чим щоденно зайняті наші волонтери. Це ми, <strong>ОКО</strong>. 
+                Це наш волонтерський штаб з координаторами і 300+ волонтерами, які носять, возять, дзвонять, уточнюють, купують, евакуюють, сортують, шукають. 
+                Це два склади на обох берегах. Це видача екіпу, техніки, ліків, продуктів. Це піша доставка та авто/мото підрозділи. 
+                Це тренінги з домедичної допомоги в умовах бойових дій. Це розвозка обідів і продуктових наборів. 
+                Це величезне кохання і шалена енергетика. На цих фото не всі наші люди, але знайте — ви неймовірні, цінні, кращі люди країни. <strong>Слава Україні!</strong>
+            </p>
+
+            <div class="photo-grid">
+                <div class="photo-item"><img src="rob.jpg" alt="Робота штабу"></div>
+                <div class="photo-item"><img src="zsydop.jpg" alt="Допомога ЗСУ"></div>
+                <div class="photo-item"><img src="sklad.jpg" alt="Наші склади"></div>
+                </div>
+            
+            <button class="btn-copy" style="margin-top: 40px;" onclick="showPage('home')">Назад на головну</button>
+        </section>
+    </div>
+
 </div>
 
-<footer>
-    ВОЛОНТЕРСЬКИЙ ШТАБ ОКО | 2026 | УКРАЇНА
-</footer>
+<footer>ВОЛОНТЕРСЬКИЙ ШТАБ ОКО | 2026</footer>
 
 <script>
+    // Функція перемикання сторінок
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
     function copyToClipboard() {
         const cardNumber = document.getElementById("cardNumber").innerText;
-        const btn = document.getElementById("copyBtn");
-        navigator.clipboard.writeText(cardNumber).then(() => {
-            const originalText = btn.innerText;
-            btn.innerText = "Скопійовано";
-            setTimeout(() => { btn.innerText = originalText; }, 2000);
-        });
+        navigator.clipboard.writeText(cardNumber);
+        alert("Скопійовано");
     }
 </script>
 
